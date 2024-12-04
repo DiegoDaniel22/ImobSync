@@ -1,3 +1,5 @@
+import Panels.ClientePanel;
+
 import javax.swing.*;
 import java.awt.*;
 
