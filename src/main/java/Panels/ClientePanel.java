@@ -13,7 +13,7 @@ public class ClientePanel extends JPanel {
         setLayout(new BorderLayout());
 
         // Painel do formulário
-        JPanel formPanel = new JPanel(new GridLayout(6, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 10));
         formPanel.setBorder(BorderFactory.createTitledBorder("Cadastro de Clientes"));
 
         formPanel.add(new JLabel("Nome:"));
@@ -36,6 +36,10 @@ public class ClientePanel extends JPanel {
         JComboBox<String> statusComboBox = new JComboBox<>(new String[]{"LEAD", "Em Negociação", "Cliente"});
         formPanel.add(statusComboBox);
 
+        formPanel.add(new JLabel("Observacoes:"));
+        JTextField observacoesField = new JTextField();
+        formPanel.add(observacoesField);
+
         JButton salvarButton = new JButton("Salvar");
         JButton limparButton = new JButton("Limpar");
 
@@ -45,7 +49,7 @@ public class ClientePanel extends JPanel {
         add(formPanel, BorderLayout.NORTH);
 
         // Modelo da tabela
-        DefaultTableModel tableModel = new DefaultTableModel(new Object[][]{}, new String[]{"Nome", "Telefone", "Email", "Endereço", "Status"});
+        DefaultTableModel tableModel = new DefaultTableModel(new Object[][]{}, new String[]{"Nome", "Telefone", "Email", "Endereço", "Status", "Observacoes"});
         JTable clienteTable = new JTable(tableModel);
         add(new JScrollPane(clienteTable), BorderLayout.CENTER);
 
@@ -67,7 +71,7 @@ public class ClientePanel extends JPanel {
             Cliente cliente = new Cliente();
             cliente.setContato(contato);
             cliente.setTipoCliente((String) statusComboBox.getSelectedItem());
-            cliente.setObservações(""); // Pode adicionar um campo para observações se necessário
+            cliente.setObservacoes(observacoesField.getText());
 
             // Salvar no MongoDB
             clienteDAO.salvarCliente(cliente);
@@ -78,7 +82,8 @@ public class ClientePanel extends JPanel {
                     contato.getTelefone(),
                     contato.getEmail(),
                     contato.getEndereco(),
-                    cliente.getTipoCliente()
+                    cliente.getTipoCliente(),
+                    cliente.getObservacoes()
             });
 
             JOptionPane.showMessageDialog(this, "Cliente salvo com sucesso!");
@@ -91,10 +96,10 @@ public class ClientePanel extends JPanel {
             emailField.setText("");
             enderecoField.setText("");
             statusComboBox.setSelectedIndex(0);
+            observacoesField.setText("");
         });
     }
 
-    // Método para carregar os clientes já salvos no banco de dados
     private void loadClientes(ClienteDAO clienteDAO, DefaultTableModel tableModel) {
         // Buscar todos os clientes do banco de dados
         for (Cliente cliente : clienteDAO.buscarTodosClientes()) {
@@ -104,7 +109,8 @@ public class ClientePanel extends JPanel {
                     contato.getTelefone(),
                     contato.getEmail(),
                     contato.getEndereco(),
-                    cliente.getTipoCliente()
+                    cliente.getTipoCliente(),
+                    cliente.getObservacoes()
             });
         }
     }

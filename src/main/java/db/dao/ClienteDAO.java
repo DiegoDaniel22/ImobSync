@@ -2,6 +2,8 @@ package db.dao;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import db.MongoDBConnection;
 import models.Cliente;
 import models.Contato;
 import org.bson.Document;
@@ -52,7 +54,7 @@ public class ClienteDAO {
                 .append("email", cliente.getContato().getEmail())
                 .append("endereco", cliente.getContato().getEndereco())
                 .append("status", cliente.getTipoCliente()) // Armazenando o status como campo
-                .append("observacoes", cliente.getObservações());
+                .append("observacoes", cliente.getObservacoes());
 
         collection.insertOne(clienteDoc); // Inserindo o cliente no MongoDB
     }

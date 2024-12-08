@@ -1,4 +1,4 @@
-import Panels.ClientePanel;
+import Panels.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,11 +44,11 @@ public class MainFrame extends JFrame {
         // Telas do sistema
         mainPanel.add(new JLabel("Bem-vindo ao CRM! Selecione uma opção no menu."), "home");
         mainPanel.add(new ClientePanel(), "clientes");
-        mainPanel.add(new JLabel("Tela de Funcionários (em construção)"), "funcionarios");
-        mainPanel.add(new JLabel("Tela de Empresas Parceiras (em construção)"), "empresasParceiras");
-        mainPanel.add(new JLabel("Tela de Empreendimentos (em construção)"), "empreendimentos");
-        mainPanel.add(new JLabel("Tela de Agendamento (em construção)"), "agendamento");
-        mainPanel.add(new JLabel("Tela de Relatórios (em construção)"), "relatorios");
+        mainPanel.add(new FuncionarioPanel(), "funcionarios");
+        mainPanel.add(new EmpresaPanel() , "empresasParceiras");
+        mainPanel.add(new EmpreendimentoPanel(), "empreendimentos");
+        mainPanel.add(new AtendimentoPanel(), "agendamento");
+        mainPanel.add(new RelatorioPanel(), "relatorios");
 
         // Troca de telas ao clicar nos menus
         clientesItem.addActionListener(e -> cardLayout.show(mainPanel, "clientes"));

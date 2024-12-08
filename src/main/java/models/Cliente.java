@@ -3,7 +3,7 @@ package models;
 public class Cliente {
     private String idCliente;
     private Contato contato;
-    private String observações;
+    private String observacoes;
     private String tipoCliente;
 
     public Cliente() {}
@@ -24,12 +24,12 @@ public class Cliente {
         this.contato = contato;
     }
 
-    public String getObservações() {
-        return observações;
+    public String getObservacoes() {
+        return observacoes;
     }
 
-    public void setObservações(String observações) {
-        this.observações = observações;
+    public void setObservacoes(String observações) {
+        this.observacoes = observações;
     }
 
     public String getTipoCliente() {

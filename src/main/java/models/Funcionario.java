@@ -59,4 +59,8 @@ public class Funcionario {
     public void setDataDemissao(Date dataDemissao) {
         this.dataDemissao = dataDemissao;
     }
+
+    public void setNome(String nome) {
+        this.contato.setNome(nome);
+    }
 }
